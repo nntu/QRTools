@@ -28,127 +28,192 @@ namespace QRTools
         /// </summary>
         private void InitializeComponent()
         {
-            this.groupBoxOptions = new System.Windows.Forms.GroupBox();
-            this.rbNoLogo = new System.Windows.Forms.RadioButton();
-            this.rbWithLogo = new System.Windows.Forms.RadioButton();
-            this.lblQRColor = new System.Windows.Forms.Label();
-            this.lblBGColor = new System.Windows.Forms.Label();
-            this.btnQRColor = new System.Windows.Forms.Button();
-            this.btnBGColor = new System.Windows.Forms.Button();
-            this.openFileDialogLogo = new System.Windows.Forms.OpenFileDialog();
-            this.colorDialogQR = new System.Windows.Forms.ColorDialog();
-            this.colorDialogBG = new System.Windows.Forms.ColorDialog();
-            this.groupBoxOptions.SuspendLayout();
-            this.SuspendLayout();
-            //
+            groupBoxOptions = new GroupBox();
+            rbNoLogo = new RadioButton();
+            rbWithLogo = new RadioButton();
+            chkUseGradient = new CheckBox();
+            lblGradientType = new Label();
+            cmbGradientPreset = new ComboBox();
+            btnCustomGradient = new Button();
+            lblQRColor = new Label();
+            lblBGColor = new Label();
+            lblGradientEnd = new Label();
+            btnQRColor = new Button();
+            btnBGColor = new Button();
+            btnGradientEnd = new Button();
+            openFileDialogLogo = new OpenFileDialog();
+            colorDialogQR = new ColorDialog();
+            colorDialogBG = new ColorDialog();
+            colorDialogGradient = new ColorDialog();
+            groupBoxOptions.SuspendLayout();
+            SuspendLayout();
+            // 
             // groupBoxOptions
-            //
-            this.groupBoxOptions.Controls.Add(this.rbNoLogo);
-            this.groupBoxOptions.Controls.Add(this.rbWithLogo);
-            this.groupBoxOptions.Controls.Add(this.chkUseGradient);
-            this.groupBoxOptions.Controls.Add(this.lblQRColor);
-            this.groupBoxOptions.Controls.Add(this.lblBGColor);
-            this.groupBoxOptions.Controls.Add(this.lblGradientEnd);
-            this.groupBoxOptions.Controls.Add(this.btnQRColor);
-            this.groupBoxOptions.Controls.Add(this.btnBGColor);
-            this.groupBoxOptions.Controls.Add(this.btnGradientEnd);
-            this.groupBoxOptions.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBoxOptions.Location = new System.Drawing.Point(0, 0);
-            this.groupBoxOptions.Name = "groupBoxOptions";
-            this.groupBoxOptions.Size = new System.Drawing.Size(250, 180);
-            this.groupBoxOptions.TabIndex = 0;
-            this.groupBoxOptions.TabStop = false;
-            this.groupBoxOptions.Text = "Tùy chọn";
-            //
+            // 
+            groupBoxOptions.Controls.Add(rbNoLogo);
+            groupBoxOptions.Controls.Add(rbWithLogo);
+            groupBoxOptions.Controls.Add(chkUseGradient);
+            groupBoxOptions.Controls.Add(lblGradientType);
+            groupBoxOptions.Controls.Add(cmbGradientPreset);
+            groupBoxOptions.Controls.Add(btnCustomGradient);
+            groupBoxOptions.Controls.Add(lblQRColor);
+            groupBoxOptions.Controls.Add(lblBGColor);
+            groupBoxOptions.Controls.Add(lblGradientEnd);
+            groupBoxOptions.Controls.Add(btnQRColor);
+            groupBoxOptions.Controls.Add(btnBGColor);
+            groupBoxOptions.Controls.Add(btnGradientEnd);
+            groupBoxOptions.Dock = DockStyle.Fill;
+            groupBoxOptions.Location = new Point(0, 0);
+            groupBoxOptions.Name = "groupBoxOptions";
+            groupBoxOptions.Size = new Size(414, 229);
+            groupBoxOptions.TabIndex = 0;
+            groupBoxOptions.TabStop = false;
+            groupBoxOptions.Text = "Tùy chọn";
+            // 
             // rbNoLogo
-            //
-            this.rbNoLogo.AutoSize = true;
-            this.rbNoLogo.Checked = true;
-            this.rbNoLogo.Location = new System.Drawing.Point(10, 20);
-            this.rbNoLogo.Name = "rbNoLogo";
-            this.rbNoLogo.Size = new System.Drawing.Size(87, 19);
-            this.rbNoLogo.TabIndex = 0;
-            this.rbNoLogo.TabStop = true;
-            this.rbNoLogo.Text = "Không logo";
-            this.rbNoLogo.UseVisualStyleBackColor = true;
-            //
+            // 
+            rbNoLogo.AutoSize = true;
+            rbNoLogo.Checked = true;
+            rbNoLogo.Location = new Point(10, 20);
+            rbNoLogo.Name = "rbNoLogo";
+            rbNoLogo.Size = new Size(87, 19);
+            rbNoLogo.TabIndex = 0;
+            rbNoLogo.TabStop = true;
+            rbNoLogo.Text = "Không logo";
+            rbNoLogo.UseVisualStyleBackColor = true;
+            // 
             // rbWithLogo
-            //
-            this.rbWithLogo.AutoSize = true;
-            this.rbWithLogo.Location = new System.Drawing.Point(10, 45);
-            this.rbWithLogo.Name = "rbWithLogo";
-            this.rbWithLogo.Size = new System.Drawing.Size(80, 19);
-            this.rbWithLogo.TabIndex = 1;
-            this.rbWithLogo.Text = "Chèn logo";
-            this.rbWithLogo.UseVisualStyleBackColor = true;
-            this.rbWithLogo.CheckedChanged += new System.EventHandler(this.rbWithLogo_CheckedChanged);
-            //
+            // 
+            rbWithLogo.AutoSize = true;
+            rbWithLogo.Location = new Point(10, 45);
+            rbWithLogo.Name = "rbWithLogo";
+            rbWithLogo.Size = new Size(80, 19);
+            rbWithLogo.TabIndex = 1;
+            rbWithLogo.Text = "Chèn logo";
+            rbWithLogo.UseVisualStyleBackColor = true;
+            rbWithLogo.CheckedChanged += rbWithLogo_CheckedChanged;
+            // 
             // chkUseGradient
-            //
-            this.chkUseGradient.AutoSize = true;
-            this.chkUseGradient.Location = new System.Drawing.Point(10, 70);
-            this.chkUseGradient.Name = "chkUseGradient";
-            this.chkUseGradient.Size = new System.Drawing.Size(95, 19);
-            this.chkUseGradient.TabIndex = 2;
-            this.chkUseGradient.Text = "Sử dụng Gradient";
-            this.chkUseGradient.UseVisualStyleBackColor = true;
-            this.chkUseGradient.CheckedChanged += new System.EventHandler(this.chkUseGradient_CheckedChanged);
-            //
+            // 
+            chkUseGradient.AutoSize = true;
+            chkUseGradient.Location = new Point(10, 70);
+            chkUseGradient.Name = "chkUseGradient";
+            chkUseGradient.Size = new Size(118, 19);
+            chkUseGradient.TabIndex = 2;
+            chkUseGradient.Text = "Sử dụng Gradient";
+            chkUseGradient.UseVisualStyleBackColor = true;
+            chkUseGradient.CheckedChanged += chkUseGradient_CheckedChanged;
+            // 
+            // lblGradientType
+            // 
+            lblGradientType.AutoSize = true;
+            lblGradientType.Location = new Point(10, 95);
+            lblGradientType.Name = "lblGradientType";
+            lblGradientType.Size = new Size(79, 15);
+            lblGradientType.TabIndex = 3;
+            lblGradientType.Text = "Loại gradient:";
+            lblGradientType.Visible = false;
+            // 
+            // cmbGradientPreset
+            // 
+            cmbGradientPreset.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbGradientPreset.FormattingEnabled = true;
+            cmbGradientPreset.Items.AddRange(new object[] { "Instagram", "Sunset", "Ocean", "Rainbow", "Forest", "Galaxy", "Fire", "Tùy chỉnh 2 màu", "Tùy chỉnh 3 màu" });
+            cmbGradientPreset.Location = new Point(100, 92);
+            cmbGradientPreset.Name = "cmbGradientPreset";
+            cmbGradientPreset.Size = new Size(120, 23);
+            cmbGradientPreset.TabIndex = 4;
+            cmbGradientPreset.Visible = false;
+            cmbGradientPreset.SelectedIndexChanged += cmbGradientPreset_SelectedIndexChanged;
+            // 
+            // btnCustomGradient
+            // 
+            btnCustomGradient.Location = new Point(225, 92);
+            btnCustomGradient.Name = "btnCustomGradient";
+            btnCustomGradient.Size = new Size(70, 23);
+            btnCustomGradient.TabIndex = 5;
+            btnCustomGradient.Text = "Tùy chỉnh";
+            btnCustomGradient.UseVisualStyleBackColor = true;
+            btnCustomGradient.Visible = false;
+            btnCustomGradient.Click += btnCustomGradient_Click;
+            // 
             // lblQRColor
-            //
-            this.lblQRColor.AutoSize = true;
-            this.lblQRColor.Location = new System.Drawing.Point(10, 75);
-            this.lblQRColor.Name = "lblQRColor";
-            this.lblQRColor.Size = new System.Drawing.Size(53, 15);
-            this.lblQRColor.TabIndex = 2;
-            this.lblQRColor.Text = "Màu QR:";
-            //
+            // 
+            lblQRColor.AutoSize = true;
+            lblQRColor.Location = new Point(10, 120);
+            lblQRColor.Name = "lblQRColor";
+            lblQRColor.Size = new Size(53, 15);
+            lblQRColor.TabIndex = 6;
+            lblQRColor.Text = "Màu QR:";
+            // 
             // lblBGColor
-            //
-            this.lblBGColor.AutoSize = true;
-            this.lblBGColor.Location = new System.Drawing.Point(10, 100);
-            this.lblBGColor.Name = "lblBGColor";
-            this.lblBGColor.Size = new System.Drawing.Size(57, 15);
-            this.lblBGColor.TabIndex = 3;
-            this.lblBGColor.Text = "Màu nền:";
-            //
+            // 
+            lblBGColor.AutoSize = true;
+            lblBGColor.Location = new Point(10, 145);
+            lblBGColor.Name = "lblBGColor";
+            lblBGColor.Size = new Size(57, 15);
+            lblBGColor.TabIndex = 7;
+            lblBGColor.Text = "Màu nền:";
+            // 
+            // lblGradientEnd
+            // 
+            lblGradientEnd.AutoSize = true;
+            lblGradientEnd.Location = new Point(10, 170);
+            lblGradientEnd.Name = "lblGradientEnd";
+            lblGradientEnd.Size = new Size(81, 15);
+            lblGradientEnd.TabIndex = 8;
+            lblGradientEnd.Text = "Màu gradient:";
+            lblGradientEnd.Visible = false;
+            // 
             // btnQRColor
-            //
-            this.btnQRColor.BackColor = System.Drawing.Color.Black;
-            this.btnQRColor.Location = new System.Drawing.Point(75, 70);
-            this.btnQRColor.Name = "btnQRColor";
-            this.btnQRColor.Size = new System.Drawing.Size(60, 23);
-            this.btnQRColor.TabIndex = 4;
-            this.btnQRColor.Text = "Chọn";
-            this.btnQRColor.UseVisualStyleBackColor = false;
-            this.btnQRColor.Click += new System.EventHandler(this.btnQRColor_Click);
-            //
+            // 
+            btnQRColor.BackColor = Color.Black;
+            btnQRColor.Location = new Point(75, 115);
+            btnQRColor.Name = "btnQRColor";
+            btnQRColor.Size = new Size(60, 23);
+            btnQRColor.TabIndex = 9;
+            btnQRColor.Text = "Chọn";
+            btnQRColor.UseVisualStyleBackColor = false;
+            btnQRColor.Click += btnQRColor_Click;
+            // 
             // btnBGColor
-            //
-            this.btnBGColor.BackColor = System.Drawing.Color.White;
-            this.btnBGColor.Location = new System.Drawing.Point(75, 95);
-            this.btnBGColor.Name = "btnBGColor";
-            this.btnBGColor.Size = new System.Drawing.Size(60, 23);
-            this.btnBGColor.TabIndex = 5;
-            this.btnBGColor.Text = "Chọn";
-            this.btnBGColor.UseVisualStyleBackColor = false;
-            this.btnBGColor.Click += new System.EventHandler(this.btnBGColor_Click);
-            //
+            // 
+            btnBGColor.BackColor = Color.White;
+            btnBGColor.Location = new Point(75, 140);
+            btnBGColor.Name = "btnBGColor";
+            btnBGColor.Size = new Size(60, 23);
+            btnBGColor.TabIndex = 10;
+            btnBGColor.Text = "Chọn";
+            btnBGColor.UseVisualStyleBackColor = false;
+            btnBGColor.Click += btnBGColor_Click;
+            // 
+            // btnGradientEnd
+            // 
+            btnGradientEnd.BackColor = Color.Blue;
+            btnGradientEnd.Location = new Point(95, 165);
+            btnGradientEnd.Name = "btnGradientEnd";
+            btnGradientEnd.Size = new Size(60, 23);
+            btnGradientEnd.TabIndex = 11;
+            btnGradientEnd.Text = "Chọn";
+            btnGradientEnd.UseVisualStyleBackColor = false;
+            btnGradientEnd.Visible = false;
+            btnGradientEnd.Click += btnGradientEnd_Click;
+            // 
             // openFileDialogLogo
-            //
-            this.openFileDialogLogo.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp";
-            this.openFileDialogLogo.Title = "Chọn file logo";
-            //
+            // 
+            openFileDialogLogo.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp";
+            openFileDialogLogo.Title = "Chọn file logo";
+            // 
             // QROptionsControl
-            //
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.groupBoxOptions);
-            this.Name = "QROptionsControl";
-            this.Size = new System.Drawing.Size(250, 140);
-            this.groupBoxOptions.ResumeLayout(false);
-            this.groupBoxOptions.PerformLayout();
-            this.ResumeLayout(false);
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(groupBoxOptions);
+            Name = "QROptionsControl";
+            Size = new Size(414, 229);
+            groupBoxOptions.ResumeLayout(false);
+            groupBoxOptions.PerformLayout();
+            ResumeLayout(false);
 
         }
 
@@ -157,12 +222,19 @@ namespace QRTools
         private System.Windows.Forms.GroupBox groupBoxOptions;
         private System.Windows.Forms.RadioButton rbNoLogo;
         private System.Windows.Forms.RadioButton rbWithLogo;
+        private System.Windows.Forms.CheckBox chkUseGradient;
+        private System.Windows.Forms.Label lblGradientType;
+        private System.Windows.Forms.ComboBox cmbGradientPreset;
+        private System.Windows.Forms.Button btnCustomGradient;
         private System.Windows.Forms.Label lblQRColor;
         private System.Windows.Forms.Label lblBGColor;
+        private System.Windows.Forms.Label lblGradientEnd;
         private System.Windows.Forms.Button btnQRColor;
         private System.Windows.Forms.Button btnBGColor;
+        private System.Windows.Forms.Button btnGradientEnd;
         private System.Windows.Forms.OpenFileDialog openFileDialogLogo;
         private System.Windows.Forms.ColorDialog colorDialogQR;
         private System.Windows.Forms.ColorDialog colorDialogBG;
+        private System.Windows.Forms.ColorDialog colorDialogGradient;
     }
 }

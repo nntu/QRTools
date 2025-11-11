@@ -96,16 +96,6 @@ namespace QRTools
                 int qrSize = Math.Min(pictureBox.Width - padding * 2, pictureBox.Height - padding * 2);
                 qrSize = Math.Max(qrSize, 100); // Minimum size
 
-                // Generate QR code using SkiaSharp.QrCode QRCodeImageBuilder
-                var qrBytes = new QRCodeImageBuilder(text)
-                    .WithSize(qrSize, qrSize)
-                    .WithColors(qrColor, bgColor)
-                    .ToByteArray();
-
-                // Convert bytes to SKImage
-                using var data = SKData.CreateCopy(qrBytes);
-                using var qrImage = SKImage.FromEncodedData(data);
-
                 // Create a surface to draw on
                 var info = new SKImageInfo(qrSize, qrSize);
                 using var surface = SKSurface.Create(info);
@@ -114,8 +104,58 @@ namespace QRTools
                 // Clear with background color
                 canvas.Clear(bgColor);
 
-                // Draw the QR code
-                canvas.DrawImage(qrImage, 0, 0);
+                // Generate QR code using SkiaSharp.QrCode QRCodeImageBuilder
+                try
+                {
+                    byte[] qrBytes;
+                    SKImage qrImage;
+
+                    if (optionsControl.UseGradient && optionsControl.SelectedGradient != null)
+                    {
+                        // Generate QR code with gradient
+                        qrBytes = new QRCodeImageBuilder(text)
+                            .WithSize(qrSize, qrSize)
+                            .WithColors(SKColors.Black, SKColors.Transparent)
+                            .ToByteArray();
+
+                        using var data = SKData.CreateCopy(qrBytes);
+                        qrImage = SKImage.FromEncodedData(data);
+
+                        if (qrImage == null)
+                        {
+                            MessageBox.Show("Failed to create QR image!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+
+                        // Apply gradient to QR code
+                        ApplyGradientToQR(canvas, qrImage, optionsControl.SelectedGradient, qrSize);
+                    }
+                    else
+                    {
+                        // Generate normal QR code
+                        qrBytes = new QRCodeImageBuilder(text)
+                            .WithSize(qrSize, qrSize)
+                            .WithColors(qrColor, SKColors.Transparent)
+                            .ToByteArray();
+
+                        using var data = SKData.CreateCopy(qrBytes);
+                        qrImage = SKImage.FromEncodedData(data);
+
+                        if (qrImage == null)
+                        {
+                            MessageBox.Show("Failed to create QR image!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+
+                        // Draw normal QR code
+                        canvas.DrawImage(qrImage, 0, 0);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error creating QR: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
 
                 // Add logo if selected
                 if (optionsControl.UseLogo && optionsControl.LogoImage != null)
@@ -150,6 +190,7 @@ namespace QRTools
             }
         }
 
+        
         private SKBitmap ResizeLogo(SKBitmap originalLogo, int targetSize)
         {
             // Calculate scale to maintain aspect ratio
@@ -185,6 +226,59 @@ namespace QRTools
         }
 
         
+        private void ApplyGradientToQR(SKCanvas canvas, SKImage qrImage, AppGradientOptions gradientOptions, int size)
+        {
+            // Convert QR image to bitmap to access pixels
+            using var originalBitmap = SKBitmap.FromImage(qrImage);
+            if (originalBitmap == null) return;
+
+            // Create gradient shader
+            var colors = gradientOptions.Colors;
+            var positions = gradientOptions.Positions ?? GenerateDefaultPositions(colors.Length);
+
+            // Use simple linear gradient for now (left to right)
+            using var shader = SKShader.CreateLinearGradient(
+                new SKPoint(0, 0),
+                new SKPoint(size, 0),
+                colors,
+                positions,
+                SKShaderTileMode.Clamp);
+
+            using var gradientPaint = new SKPaint { Shader = shader };
+
+            // Create final bitmap with gradient applied to QR parts only
+            using var finalBitmap = new SKBitmap(size, size);
+            using var finalCanvas = new SKCanvas(finalBitmap);
+
+            // Clear with transparent background
+            finalCanvas.Clear(SKColors.Transparent);
+
+            // Draw QR image first
+            finalCanvas.DrawImage(qrImage, 0, 0);
+
+            // Apply gradient with proper blend mode to only affect black parts
+            using var gradientMaskPaint = new SKPaint
+            {
+                Shader = shader,
+                BlendMode = SKBlendMode.SrcIn // Only apply gradient where QR exists
+            };
+
+            finalCanvas.DrawRect(0, 0, size, size, gradientMaskPaint);
+
+            // Draw the final result
+            canvas.DrawBitmap(finalBitmap, 0, 0);
+        }
+
+        private float[] GenerateDefaultPositions(int colorCount)
+        {
+            var positions = new float[colorCount];
+            for (int i = 0; i < colorCount; i++)
+            {
+                positions[i] = (float)i / (colorCount - 1);
+            }
+            return positions;
+        }
+
         private void btnSaveQR_Click(object? sender, EventArgs e)
         {
             if (currentQRCode == null)

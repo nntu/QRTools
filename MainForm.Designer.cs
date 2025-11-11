@@ -47,10 +47,10 @@ namespace QRTools
             pictureBoxQR_WIFI = new PictureBox();
             qrOptionsControl_WIFI = new QROptionsControl();
             btnSaveQR_WIFI = new Button();
-            saveFileDialogQR = new SaveFileDialog();
             tabPageAbout = new TabPage();
-            label2 = new Label();
             label3 = new Label();
+            label2 = new Label();
+            saveFileDialogQR = new SaveFileDialog();
             tabControl1.SuspendLayout();
             tabPageQR_URL.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxQR_URL).BeginInit();
@@ -125,9 +125,9 @@ namespace QRTools
             // 
             // qrOptionsControl_URL
             // 
-            qrOptionsControl_URL.Location = new Point(12, 110);
+            qrOptionsControl_URL.Location = new Point(12, 46);
             qrOptionsControl_URL.Name = "qrOptionsControl_URL";
-            qrOptionsControl_URL.Size = new Size(250, 140);
+            qrOptionsControl_URL.Size = new Size(441, 180);
             qrOptionsControl_URL.TabIndex = 11;
             // 
             // btnSaveQR_URL
@@ -236,7 +236,7 @@ namespace QRTools
             // 
             qrOptionsControl_WIFI.Location = new Point(12, 110);
             qrOptionsControl_WIFI.Name = "qrOptionsControl_WIFI";
-            qrOptionsControl_WIFI.Size = new Size(250, 140);
+            qrOptionsControl_WIFI.Size = new Size(423, 180);
             qrOptionsControl_WIFI.TabIndex = 14;
             // 
             // btnSaveQR_WIFI
@@ -248,11 +248,6 @@ namespace QRTools
             btnSaveQR_WIFI.Text = "Lưu QR Code";
             btnSaveQR_WIFI.UseVisualStyleBackColor = true;
             btnSaveQR_WIFI.Click += btnSaveQR_Click;
-            // 
-            // saveFileDialogQR
-            // 
-            saveFileDialogQR.Filter = "PNG Files|*.png|JPEG Files|*.jpg";
-            saveFileDialogQR.Title = "Lưu QR Code";
             // 
             // tabPageAbout
             // 
@@ -266,6 +261,15 @@ namespace QRTools
             tabPageAbout.Text = "About";
             tabPageAbout.UseVisualStyleBackColor = true;
             // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(289, 79);
+            label3.Name = "label3";
+            label3.Size = new Size(141, 15);
+            label3.TabIndex = 1;
+            label3.Text = "Tác giả: Nguyễn Ngọc Tú";
+            // 
             // label2
             // 
             label2.AutoSize = true;
@@ -276,14 +280,10 @@ namespace QRTools
             label2.TabIndex = 0;
             label2.Text = "QR Tools";
             // 
-            // label3
+            // saveFileDialogQR
             // 
-            label3.AutoSize = true;
-            label3.Location = new Point(289, 79);
-            label3.Name = "label3";
-            label3.Size = new Size(141, 15);
-            label3.TabIndex = 1;
-            label3.Text = "Tác giả: Nguyễn Ngọc Tú";
+            saveFileDialogQR.Filter = "PNG Files|*.png|JPEG Files|*.jpg";
+            saveFileDialogQR.Title = "Lưu QR Code";
             // 
             // MainForm
             // 
