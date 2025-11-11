@@ -1,0 +1,227 @@
+﻿- name: Instagram
+  colors:
+  - FCAF45
+  - F77737
+  - E1306C
+  - C13584
+  - 833AB4
+  direction: TopLeftToBottomRight
+  positions:
+  - 0
+  - 0.25
+  - 0.5
+  - 0.75
+  - 1
+  createdAt: 2025-11-11T19:39:07.3469174+07:00
+- name: Sunset
+  colors:
+  - FF6B6B
+  - FF8E53
+  - FFD93D
+  direction: LeftToRight
+  positions:
+  - 0
+  - 0.5
+  - 1
+  createdAt: 2025-11-11T19:39:07.3477635+07:00
+- name: Ocean
+  colors:
+  - 0077BE
+  - 00A8CC
+  - 5CDB95
+  direction: TopToBottom
+  positions:
+  - 0
+  - 0.5
+  - 1
+  createdAt: 2025-11-11T19:39:07.3477647+07:00
+- name: Rainbow
+  colors:
+  - '#FF0000'
+  - '#FFA500'
+  - '#FFFF00'
+  - '#00FF00'
+  - '#0000FF'
+  - '#4B0082'
+  - '#9400D3'
+  direction: LeftToRight
+  positions:
+  - 0
+  - 0.17
+  - 0.33
+  - 0.5
+  - 0.67
+  - 0.83
+  - 1
+  createdAt: 2025-11-11T19:39:07.3477650+07:00
+- name: Forest
+  colors:
+  - '#2D6A4F'
+  - '#52B788'
+  - '#95D5B2'
+  - '#B7E4C7'
+  direction: TopToBottom
+  positions:
+  - 0
+  - 0.33
+  - 0.67
+  - 1
+  createdAt: 2025-11-11T19:39:07.3477702+07:00
+- name: Galaxy
+  colors:
+  - '#2D1B69'
+  - '#0F3460'
+  - '#E94560'
+  - '#F47068'
+  direction: Radial
+  positions:
+  - 0
+  - 0.3
+  - 0.7
+  - 1
+  createdAt: 2025-11-11T19:39:07.3477716+07:00
+- name: Fire
+  colors:
+  - '#FF0000'
+  - '#FF6600'
+  - '#FFCC00'
+  - '#FFFFFF'
+  direction: TopToBottom
+  positions:
+  - 0
+  - 0.3
+  - 0.7
+  - 1
+  createdAt: 2025-11-11T19:39:07.3477720+07:00
+- name: Neon Dreams
+  colors:
+  - '#FF006E'
+  - '#8338EC'
+  - '#3A86FF'
+  direction: Diagonal
+  positions:
+  - 0
+  - 0.5
+  - 1
+  createdAt: 2025-11-11T19:50:00.0000000+07:00
+- name: Pastel Dreams
+  colors:
+  - '#FFB5E8'
+  - '#B5DEFF'
+  - '#B5FFC9'
+  - '#FFFFBA'
+  direction: LeftToRight
+  positions:
+  - 0
+  - 0.33
+  - 0.67
+  - 1
+  createdAt: 2025-11-11T19:50:00.0000000+07:00
+- name: Aurora Borealis
+  colors:
+  - '#00D9FF'
+  - '#00FF88'
+  - '#F0FF00'
+  - '#FF00FF'
+  direction: Radial
+  positions:
+  - 0
+  - 0.25
+  - 0.75
+  - 1
+  createdAt: 2025-11-11T19:50:00.0000000+07:00
+- name: Tropical Paradise
+  colors:
+  - '#FF6B35'
+  - '#F7931E'
+  - '#FDC830'
+  - '#F37335'
+  direction: TopToBottom
+  positions:
+  - 0
+  - 0.3
+  - 0.6
+  - 1
+  createdAt: 2025-11-11T19:50:00.0000000+07:00
+- name: Cyberpunk
+  colors:
+  - '#FF00FF'
+  - '#00FFFF'
+  - '#FF00AA'
+  direction: Diagonal
+  positions:
+  - 0
+  - 0.5
+  - 1
+  createdAt: 2025-11-11T19:50:00.0000000+07:00
+- name: Sunset Vibes
+  colors:
+  - '#FF512F'
+  - '#F09819'
+  - '#FDC830'
+  - '#F37335'
+  direction: TopLeftToBottomRight
+  positions:
+  - 0
+  - 0.33
+  - 0.67
+  - 1
+  createdAt: 2025-11-11T19:50:00.0000000+07:00
+- name: Ocean Waves
+  colors:
+  - '#2E3192'
+  - '#1BFFFF'
+  - '#00D4FF'
+  direction: TopToBottom
+  positions:
+  - 0
+  - 0.5
+  - 1
+  createdAt: 2025-11-11T19:50:00.0000000+07:00
+- name: Lavender Haze
+  colors:
+  - '#C471F5'
+  - '#FA71CD'
+  - '#48C6EF'
+  direction: TopLeftToBottomRight
+  positions:
+  - 0
+  - 0.4
+  - 1
+  createdAt: 2025-11-11T19:50:00.0000000+07:00
+- name: Matrix Code
+  colors:
+  - '#00FF00'
+  - '#003300'
+  - '#001100'
+  direction: TopToBottom
+  positions:
+  - 0
+  - 0.5
+  - 1
+  createdAt: 2025-11-11T19:50:00.0000000+07:00
+- name: Candy Crush
+  colors:
+  - '#FF6B9D'
+  - '#C44569'
+  - '#F8B195'
+  - '#F67280'
+  direction: LeftToRight
+  positions:
+  - 0
+  - 0.25
+  - 0.75
+  - 1
+  createdAt: 2025-11-11T19:50:00.0000000+07:00
+- name: Midnight Blue
+  colors:
+  - '#0F2027'
+  - '#203A43'
+  - '#2C5364'
+  direction: TopToBottom
+  positions:
+  - 0
+  - 0.5
+  - 1
+  createdAt: 2025-11-11T19:50:00.0000000+07:00
+ 

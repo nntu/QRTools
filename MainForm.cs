@@ -279,6 +279,7 @@ namespace QRTools
             return positions;
         }
 
+    
         private void btnSaveQR_Click(object? sender, EventArgs e)
         {
             if (currentQRCode == null)

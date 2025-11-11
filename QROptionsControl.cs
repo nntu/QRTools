@@ -19,6 +19,7 @@ namespace QRTools
         {
             InitializeComponent();
             InitializeUI();
+            LoadGradientPresets();
         }
 
         private void InitializeUI()
@@ -134,8 +135,21 @@ namespace QRTools
 
         private void cmbGradientPreset_SelectedIndexChanged(object? sender, EventArgs e)
         {
-            LoadGradientPreset(cmbGradientPreset.SelectedIndex);
-            GradientChanged?.Invoke(this, EventArgs.Empty);
+            int selectedIndex = cmbGradientPreset.SelectedIndex;
+            var itemCount = cmbGradientPreset.Items.Count;
+
+            if (selectedIndex == itemCount - 1 && cmbGradientPreset.Items[selectedIndex]?.ToString().StartsWith("+") == true)
+            {
+                // "Create New" selected - open custom gradient dialog
+                btnCustomGradient_Click(btnCustomGradient, EventArgs.Empty);
+                cmbGradientPreset.SelectedIndex = Math.Max(0, selectedIndex - 1);
+            }
+            else
+            {
+                // Regular preset selected
+                LoadGradientPreset(selectedIndex);
+                GradientChanged?.Invoke(this, EventArgs.Empty);
+            }
         }
 
         private void btnCustomGradient_Click(object? sender, EventArgs e)
@@ -294,49 +308,66 @@ namespace QRTools
 
         private void LoadGradientPreset(int index)
         {
-            switch (index)
+            var presets = GradientPresets.LoadAllPresets();
+            if (index >= 0 && index < presets.Count)
             {
-                case 0: // Instagram
-                    SelectedGradient = GradientPresets.Instagram;
-                    break;
-                case 1: // Sunset
-                    SelectedGradient = GradientPresets.Sunset;
-                    break;
-                case 2: // Ocean
-                    SelectedGradient = GradientPresets.Ocean;
-                    break;
-                case 3: // Rainbow
-                    SelectedGradient = GradientPresets.Rainbow;
-                    break;
-                case 4: // Forest
-                    SelectedGradient = GradientPresets.Forest;
-                    break;
-                case 5: // Galaxy
-                    SelectedGradient = GradientPresets.Galaxy;
-                    break;
-                case 6: // Fire
-                    SelectedGradient = GradientPresets.Fire;
-                    break;
-                case 7: // Tùy chỉnh 2 màu
-                    btnQRColor.Visible = true;
-                    lblQRColor.Visible = true;
-                    btnGradientEnd.Visible = true;
-                    lblGradientEnd.Visible = true;
-                    SelectedGradient = null;
-                    break;
-                case 8: // Tùy chỉnh 3 màu
-                    btnQRColor.Visible = true;
-                    lblQRColor.Visible = true;
-                    btnGradientEnd.Visible = true;
-                    lblGradientEnd.Visible = true;
-                    SelectedGradient = null;
-                    break;
+                var preset = presets[index];
+                SelectedGradient = GradientPresetsManager.PresetToGradientOptions(preset);
+            }
+            else
+            {
+                // Fallback to Instagram if index out of range
+                SelectedGradient = GradientPresets.Instagram;
             }
         }
 
         private SKColor ConvertToSKColor(Color color)
         {
             return new SKColor(color.R, color.G, color.B, color.A);
+        }
+
+        private void LoadGradientPresets()
+        {
+            try
+            {
+                var presets = GradientPresets.LoadAllPresets();
+                cmbGradientPreset.Items.Clear();
+
+                foreach (var preset in presets)
+                {
+                    cmbGradientPreset.Items.Add(preset.Name);
+                }
+
+                // Add "Create New" option
+                cmbGradientPreset.Items.Add("+ Tạo gradient mới");
+
+                // Select first preset by default
+                if (cmbGradientPreset.Items.Count > 1)
+                {
+                    cmbGradientPreset.SelectedIndex = 0;
+                    LoadGradientPreset(0);
+                }
+            }
+            catch (Exception)
+            {
+                // Fallback to basic gradient options
+                cmbGradientPreset.Items.Clear();
+                cmbGradientPreset.Items.AddRange(new object[] {
+                    "Instagram",
+                    "Sunset",
+                    "Ocean",
+                    "Rainbow",
+                    "Forest",
+                    "Galaxy",
+                    "Fire"
+                });
+
+                if (cmbGradientPreset.Items.Count > 0)
+                {
+                    cmbGradientPreset.SelectedIndex = 0;
+                    LoadGradientPreset(0);
+                }
+            }
         }
     }
 }

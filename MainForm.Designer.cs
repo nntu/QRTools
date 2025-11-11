@@ -51,6 +51,8 @@ namespace QRTools
             label3 = new Label();
             label2 = new Label();
             saveFileDialogQR = new SaveFileDialog();
+            label4 = new Label();
+            linkLabel1 = new LinkLabel();
             tabControl1.SuspendLayout();
             tabPageQR_URL.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxQR_URL).BeginInit();
@@ -225,7 +227,7 @@ namespace QRTools
             // pictureBoxQR_WIFI
             // 
             pictureBoxQR_WIFI.BorderStyle = BorderStyle.FixedSingle;
-            pictureBoxQR_WIFI.Location = new Point(489, 18);
+            pictureBoxQR_WIFI.Location = new Point(531, 15);
             pictureBoxQR_WIFI.Name = "pictureBoxQR_WIFI";
             pictureBoxQR_WIFI.Size = new Size(200, 200);
             pictureBoxQR_WIFI.SizeMode = PictureBoxSizeMode.CenterImage;
@@ -241,7 +243,7 @@ namespace QRTools
             // 
             // btnSaveQR_WIFI
             // 
-            btnSaveQR_WIFI.Location = new Point(12, 260);
+            btnSaveQR_WIFI.Location = new Point(584, 235);
             btnSaveQR_WIFI.Name = "btnSaveQR_WIFI";
             btnSaveQR_WIFI.Size = new Size(100, 25);
             btnSaveQR_WIFI.TabIndex = 15;
@@ -251,6 +253,8 @@ namespace QRTools
             // 
             // tabPageAbout
             // 
+            tabPageAbout.Controls.Add(linkLabel1);
+            tabPageAbout.Controls.Add(label4);
             tabPageAbout.Controls.Add(label3);
             tabPageAbout.Controls.Add(label2);
             tabPageAbout.Location = new Point(4, 24);
@@ -284,6 +288,25 @@ namespace QRTools
             // 
             saveFileDialogQR.Filter = "PNG Files|*.png|JPEG Files|*.jpg";
             saveFileDialogQR.Title = "Lưu QR Code";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(289, 103);
+            label4.Name = "label4";
+            label4.Size = new Size(42, 15);
+            label4.TabIndex = 2;
+            label4.Text = "Email: ";
+            // 
+            // linkLabel1
+            // 
+            linkLabel1.AutoSize = true;
+            linkLabel1.Location = new Point(334, 101);
+            linkLabel1.Name = "linkLabel1";
+            linkLabel1.Size = new Size(125, 15);
+            linkLabel1.TabIndex = 3;
+            linkLabel1.TabStop = true;
+            linkLabel1.Text = "Ngoctuct@gmail.com";
             // 
             // MainForm
             // 
@@ -332,5 +355,7 @@ namespace QRTools
         private TabPage tabPageAbout;
         private Label label3;
         private Label label2;
+        private LinkLabel linkLabel1;
+        private Label label4;
     }
 }
