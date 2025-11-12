@@ -84,7 +84,7 @@ namespace QRTools
             tabPageQR_URL.Location = new Point(4, 24);
             tabPageQR_URL.Name = "tabPageQR_URL";
             tabPageQR_URL.Padding = new Padding(3);
-            tabPageQR_URL.Size = new Size(792, 408);
+            tabPageQR_URL.Size = new Size(792, 471);
             tabPageQR_URL.TabIndex = 0;
             tabPageQR_URL.Text = "QR_URL";
             tabPageQR_URL.UseVisualStyleBackColor = true;
@@ -129,7 +129,7 @@ namespace QRTools
             // 
             qrOptionsControl_URL.Location = new Point(12, 46);
             qrOptionsControl_URL.Name = "qrOptionsControl_URL";
-            qrOptionsControl_URL.Size = new Size(468, 282);
+            qrOptionsControl_URL.Size = new Size(468, 335);
             qrOptionsControl_URL.TabIndex = 11;
             // 
             // btnSaveQR_URL
@@ -238,7 +238,7 @@ namespace QRTools
             // 
             qrOptionsControl_WIFI.Location = new Point(12, 110);
             qrOptionsControl_WIFI.Name = "qrOptionsControl_WIFI";
-            qrOptionsControl_WIFI.Size = new Size(447, 312);
+            qrOptionsControl_WIFI.Size = new Size(447, 336);
             qrOptionsControl_WIFI.TabIndex = 14;
             // 
             // btnSaveQR_WIFI
