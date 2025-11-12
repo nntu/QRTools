@@ -48,11 +48,11 @@ namespace QRTools
             qrOptionsControl_WIFI = new QROptionsControl();
             btnSaveQR_WIFI = new Button();
             tabPageAbout = new TabPage();
+            linkLabel1 = new LinkLabel();
+            label4 = new Label();
             label3 = new Label();
             label2 = new Label();
             saveFileDialogQR = new SaveFileDialog();
-            label4 = new Label();
-            linkLabel1 = new LinkLabel();
             tabControl1.SuspendLayout();
             tabPageQR_URL.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxQR_URL).BeginInit();
@@ -70,7 +70,7 @@ namespace QRTools
             tabControl1.Location = new Point(0, 0);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(800, 450);
+            tabControl1.Size = new Size(800, 499);
             tabControl1.TabIndex = 0;
             // 
             // tabPageQR_URL
@@ -84,7 +84,7 @@ namespace QRTools
             tabPageQR_URL.Location = new Point(4, 24);
             tabPageQR_URL.Name = "tabPageQR_URL";
             tabPageQR_URL.Padding = new Padding(3);
-            tabPageQR_URL.Size = new Size(792, 422);
+            tabPageQR_URL.Size = new Size(792, 408);
             tabPageQR_URL.TabIndex = 0;
             tabPageQR_URL.Text = "QR_URL";
             tabPageQR_URL.UseVisualStyleBackColor = true;
@@ -129,12 +129,12 @@ namespace QRTools
             // 
             qrOptionsControl_URL.Location = new Point(12, 46);
             qrOptionsControl_URL.Name = "qrOptionsControl_URL";
-            qrOptionsControl_URL.Size = new Size(441, 180);
+            qrOptionsControl_URL.Size = new Size(468, 282);
             qrOptionsControl_URL.TabIndex = 11;
             // 
             // btnSaveQR_URL
             // 
-            btnSaveQR_URL.Location = new Point(12, 260);
+            btnSaveQR_URL.Location = new Point(515, 232);
             btnSaveQR_URL.Name = "btnSaveQR_URL";
             btnSaveQR_URL.Size = new Size(100, 25);
             btnSaveQR_URL.TabIndex = 12;
@@ -157,7 +157,7 @@ namespace QRTools
             tabPageQR_WIFI.Location = new Point(4, 24);
             tabPageQR_WIFI.Name = "tabPageQR_WIFI";
             tabPageQR_WIFI.Padding = new Padding(3);
-            tabPageQR_WIFI.Size = new Size(792, 422);
+            tabPageQR_WIFI.Size = new Size(792, 471);
             tabPageQR_WIFI.TabIndex = 1;
             tabPageQR_WIFI.Text = "QR_WIFI";
             tabPageQR_WIFI.UseVisualStyleBackColor = true;
@@ -238,7 +238,7 @@ namespace QRTools
             // 
             qrOptionsControl_WIFI.Location = new Point(12, 110);
             qrOptionsControl_WIFI.Name = "qrOptionsControl_WIFI";
-            qrOptionsControl_WIFI.Size = new Size(423, 180);
+            qrOptionsControl_WIFI.Size = new Size(447, 312);
             qrOptionsControl_WIFI.TabIndex = 14;
             // 
             // btnSaveQR_WIFI
@@ -260,10 +260,29 @@ namespace QRTools
             tabPageAbout.Location = new Point(4, 24);
             tabPageAbout.Name = "tabPageAbout";
             tabPageAbout.Padding = new Padding(3);
-            tabPageAbout.Size = new Size(792, 422);
+            tabPageAbout.Size = new Size(192, 72);
             tabPageAbout.TabIndex = 2;
             tabPageAbout.Text = "About";
             tabPageAbout.UseVisualStyleBackColor = true;
+            // 
+            // linkLabel1
+            // 
+            linkLabel1.AutoSize = true;
+            linkLabel1.Location = new Point(334, 101);
+            linkLabel1.Name = "linkLabel1";
+            linkLabel1.Size = new Size(125, 15);
+            linkLabel1.TabIndex = 3;
+            linkLabel1.TabStop = true;
+            linkLabel1.Text = "Ngoctuct@gmail.com";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(289, 103);
+            label4.Name = "label4";
+            label4.Size = new Size(42, 15);
+            label4.TabIndex = 2;
+            label4.Text = "Email: ";
             // 
             // label3
             // 
@@ -289,30 +308,11 @@ namespace QRTools
             saveFileDialogQR.Filter = "PNG Files|*.png|JPEG Files|*.jpg";
             saveFileDialogQR.Title = "Lưu QR Code";
             // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new Point(289, 103);
-            label4.Name = "label4";
-            label4.Size = new Size(42, 15);
-            label4.TabIndex = 2;
-            label4.Text = "Email: ";
-            // 
-            // linkLabel1
-            // 
-            linkLabel1.AutoSize = true;
-            linkLabel1.Location = new Point(334, 101);
-            linkLabel1.Name = "linkLabel1";
-            linkLabel1.Size = new Size(125, 15);
-            linkLabel1.TabIndex = 3;
-            linkLabel1.TabStop = true;
-            linkLabel1.Text = "Ngoctuct@gmail.com";
-            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(800, 499);
             Controls.Add(tabControl1);
             Name = "MainForm";
             Text = "QR Tools";

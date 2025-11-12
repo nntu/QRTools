@@ -39,11 +39,19 @@ namespace QRTools
         public AppGradientOptions? SelectedGradient { get; private set; }
         public OpenFileDialog LogoDialog => openFileDialogLogo;
 
+        // Quality properties
+        public QRQuality Quality => (QRQuality)cmbQuality.SelectedIndex;
+        public QRErrorCorrection ErrorCorrection => (QRErrorCorrection)cmbErrorCorrection.SelectedIndex;
+        public bool UseAntiAliasing => chkAntiAliasing.Checked;
+
         // Event handlers
         public event EventHandler? LogoChanged;
         public event EventHandler? QRColorChanged;
         public event EventHandler? BackgroundColorChanged;
         public event EventHandler? GradientChanged;
+        public event EventHandler? QualityChanged;
+        public event EventHandler? ErrorCorrectionChanged;
+        public event EventHandler? AntiAliasingChanged;
 
         private void rbWithLogo_CheckedChanged(object? sender, EventArgs e)
         {
@@ -368,6 +376,31 @@ namespace QRTools
                     LoadGradientPreset(0);
                 }
             }
+        }
+
+        private void cmbQuality_SelectedIndexChanged(object? sender, EventArgs e)
+        {
+            QualityChanged?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void cmbErrorCorrection_SelectedIndexChanged(object? sender, EventArgs e)
+        {
+            ErrorCorrectionChanged?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void chkAntiAliasing_CheckedChanged(object? sender, EventArgs e)
+        {
+            AntiAliasingChanged?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void lblQuality_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblErrorCorrection_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
