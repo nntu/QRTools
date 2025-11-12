@@ -1,0 +1,98 @@
+name: Windows x64 Auto-bump & Release (1.x.ddMM.yyyy)
+
+permissions:
+  contents: write
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch: {}
+
+jobs:
+  release-windows:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout (with tags)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # Nếu bạn KHÔNG dùng .NET, xóa 2 bước setup/build .NET bên dưới
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '9.0.x'
+
+      - name: Compute next 1.x.ddMM.yyyy tag
+        id: version
+        shell: pwsh
+        run: |
+          $day   = (Get-Date -Format "dd")
+          $month = (Get-Date -Format "MM")
+          $year  = (Get-Date -Format "yyyy")
+          $dateToken = "$day$month"
+          $today     = "$dateToken.$year"
+
+          # Lấy tất cả tag trong format 1.*.ddMM.yyyy cho hôm nay
+          $pattern = "^1\.(\d+)\.$dateToken\.$year$"
+          $tags = (git tag --list "1.*.$dateToken.$year") | Sort-Object
+
+          $nextX = 0
+          foreach ($t in $tags) {
+            $m = [regex]::Match($t, $pattern)
+            if ($m.Success) {
+              $val = [int]$m.Groups[1].Value
+              if ($val -ge $nextX) { $nextX = $val + 1 }
+            }
+          }
+
+          $version = "1.$nextX.$today"
+          "version=$version" >> $env:GITHUB_OUTPUT
+
+      - name: Create and push tag
+        shell: pwsh
+        run: |
+          $v = "${{ steps.version.outputs.version }}"
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if (git rev-parse -q --verify "refs/tags/$v") {
+            Write-Host "Tag $v already exists. Skipping create."
+          } else {
+            git tag "$v"
+            git push origin "$v"
+          }
+
+      # ====== BUILD WINDOWS X64 (ví dụ .NET) ======
+      - name: Restore
+        run: dotnet restore
+
+      - name: Build (Release)
+        run: dotnet build -c Release
+
+      - name: Publish win-x64
+        run: dotnet publish -c Release -r win-x64 --self-contained false -o out\win-x64
+
+      # Nếu bạn dùng ngôn ngữ khác:
+      # - Go:   setx GOOS windows; setx GOARCH amd64; go build -o out\win-x64\app.exe .
+      # - Rust: cargo build --release --target x86_64-pc-windows-msvc (copy target\...\release\*.exe -> out\win-x64)
+      # - C/C++: msbuild /p:Configuration=Release /p:Platform=x64
+
+      - name: Package zip (Windows x64)
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force -Path artifacts | Out-Null
+          $zip = "artifacts\QR_Tools_release-${{ steps.version.outputs.version }}-win-x64.zip"
+          if (Test-Path $zip) { Remove-Item $zip -Force }
+          Compress-Archive -Path "out\win-x64\*" -DestinationPath $zip
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.version.outputs.version }}
+          name: ${{ steps.version.outputs.version }}
+          files: artifacts/QR_Tools_release-${{ steps.version.outputs.version }}-win-x64.zip
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
